@@ -19,7 +19,7 @@ conda activate pfamscan
 conda install -c bioconda pfam_scan
 ```
 
-Alternatively, the user can follow the instructions described [here](https://vcru.wisc.edu/simonlab/bioinformatics/programs/install/pfamscan.htm)
+In case the user does not choose Conda as the desired environment, this instructions described [here](https://vcru.wisc.edu/simonlab/bioinformatics/programs/install/pfamscan.htm) can be followed.
 
 Disclaimer: Pfam-B has not been uploaded from version 27. You can take Pfam-A.hmm from `current_release` and Pfam-B.hmm from version 27 or take only Pfam-A.hmm. More info [here](https://en.wikipedia.org/wiki/Pfam).
 
