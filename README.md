@@ -17,6 +17,9 @@ Once you have installed Miniconda/Anaconda, create a Python 3 environment.
 conda create --name pfamscan python=3
 conda activate pfamscan
 conda install -c bioconda pfam_scan
+
+git clone https://github.com/fpozoc/hp-pfamscan.git
+cd HP-PfamScan
 ```
 
 In case the user does not choose Conda as the desired environment, this instructions described [here](https://vcru.wisc.edu/simonlab/bioinformatics/programs/install/pfamscan.htm) can be followed.
@@ -24,21 +27,15 @@ In case the user does not choose Conda as the desired environment, this instruct
 Disclaimer: Pfam-B has not been uploaded from version 27. You can take Pfam-A.hmm from `current_release` and Pfam-B.hmm from version 27 or take only Pfam-A.hmm. More info [here](https://en.wikipedia.org/wiki/Pfam).
 
 ```sh
-git clone https://github.com/fpozoc/hp-pfamscan.git
-cd HP-PfamScan
 mkdir -p pfam_db
-
 curl ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz | gunzip > pfam_db/Pfam-A.hmm
 curl ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.dat.gz | gunzip > pfam_db/Pfam-A.hmm.dat
 curl ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/active_site.dat.gz | gunzip > pfam_db/active_site.dat
-
 curl ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam27.0/Pfam-B.hmm.gz | gunzip > pfam_db/Pfam-B.hmm
 curl ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam27.0/Pfam-B.hmm.dat.gz | gunzip > pfam_db/Pfam-B.hmm.dat
 
 hmmpress Pfam-A.hmm
-
-### Optional
-hmmpress Pfam-B.hmm
+hmmpress Pfam-B.hmm ### Optional
 
 ### Download GRCh38 Gencode v33 
 mkdir -p genomes/GRCh38/g33/
