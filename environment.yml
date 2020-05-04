@@ -4,8 +4,6 @@ channels:
   - defaults
   - anaconda
   - conda-forge
-  - http://conda.anaconda.org/tdido
-  - r
 dependencies:
   - _libgcc_mutex=0.1=main
   - biopython=1.76=py38h516909a_0
