@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """ src/pfamscan.py
 
-Usage: python -m src/pfamscan.py 
+Usage: python -m src.pfamscan
 --fastadir {directory with fasta splitted inside} 
 --pfamdb {pfam database previously constructed}
 ___

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """ src/splitfa.py
 
-Usage: python -m src/splitfa.py --infile {fastafile_path} --outdir {multifasta_dir}
+Usage: python -m src.splitfa --infile {fastafile_path} --outdir {multifasta_dir}
 ___
 --help | -h Display documentation
 
@@ -29,6 +29,7 @@ from __future__ import absolute_import, division, print_function
 import argparse, os, sys
 import warnings
 
+import gzip
 from Bio import SeqIO
 import pandas as pd
 
@@ -60,7 +61,11 @@ def load_fasta(filepath):
         df {list} -- DataFrame which contains fasta sequences, lengh and id from annotation source.
     """    
     seqlist = list()
-    with open(filepath, 'r') as handle:
+    if filepath.endswith('.gz'):
+        open_f = gzip.open(filepath, 'rt')
+    else: 
+        open_f = open(filepath, 'r')
+    with open_f as handle:
         for record in SeqIO.parse(handle, "fasta"):
             seqlist.append({'transcript_id': record.name.split('|')[1].split('.')[0], # problems with synonyms
                             'gene_id': record.name.split('|')[2].split('.')[0],
