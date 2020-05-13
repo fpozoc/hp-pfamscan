@@ -14,12 +14,10 @@ bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3
 Once you have installed Miniconda/Anaconda, create a Python 3 environment.
 
 ```sh
-conda create --name pfamscan python=3
-conda activate pfamscan
-conda install -c bioconda pfam_scan
-
 git clone https://github.com/fpozoc/hp-pfamscan.git
 cd HP-PfamScan
+conda env create --file environment.yml
+conda activate pfamscan
 ```
 
 In case the user does not choose Conda as the desired environment, this instructions described [here](https://vcru.wisc.edu/simonlab/bioinformatics/programs/install/pfamscan.htm) can be followed.
@@ -37,9 +35,9 @@ curl ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam27.0/Pfam-B.hmm.dat.gz 
 hmmpress Pfam-A.hmm
 hmmpress Pfam-B.hmm ### Optional
 
-### Download GRCh38 Gencode v33 
+### Download GRCh38 Gencode v33
 mkdir -p genomes/GRCh38/g33/
-curl ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_33/gencode.v33.pc_transcripts.fa.gz | gunzip > genomes/GRCh38/g33/proteins.fa
+curl ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_33/gencode.v33.pc_transcripts.fa.gz > genome_annotation/GRCh38/g33/gencode.v33.pc_transcripts.fa.gz
 ```
 
 Split the multifasta file in several files with transcript id as name of the file. It will be stored in `genomes/GRCh38/g33/seqs`. 
@@ -47,8 +45,7 @@ Split the multifasta file in several files with transcript id as name of the fil
 Once we have it, run `src/pfamscan.py` to locally process the sequences in a batched way.
 
 ```sh
-python -m src.splitfa --infile genomes/GRCh38/g33/proteins.fa --outdir genomes/GRCh38/g33/seqs
-python -m src.pfamscan --fastadir genomes/GRCh38/g33/seqs --pfamdb pfam_db
+python -m src.run --seqs genome_annotation/GRCh38/g33/gencode.v33.pc_transcripts.fa.gz --outdir out/GRCh38/g33 --pfamdb pfam_db --jobs 10
 ```
 
 ## Links of interest
