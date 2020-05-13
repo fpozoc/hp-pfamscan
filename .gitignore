@@ -1,6 +1,6 @@
 # custom 
 test/
-genomes/
+out/
 environment.yml
 
 # Byte-compiled / optimized / DLL files

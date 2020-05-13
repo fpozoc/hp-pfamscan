@@ -55,7 +55,7 @@ def multi_pfamscan(fastas:str, outdir:str, pfamdb:str, cpus:int):
     tmpdir = os.path.join(outdir, 'tmp_pfam')
     split_multifasta(fastas, tmpdir)
     with mp.Pool(processes=cpus) as process:
-        process.map(functools.partial(run_pfamscan, outdir=outdir, pfamdb=), glob.glob(os.path.join(tmpdir, '*')))
+        process.map(functools.partial(run_pfamscan, outdir=outdir, pfamdb=pfamdb), glob.glob(os.path.join(tmpdir, '*')))
 
 
 def main():
@@ -68,7 +68,7 @@ def main():
                         type=int, default=25)
     parser.add_argument('--pfamdb', '-db', 
                         help='Path where pfamdb has been stored.', 
-                        type=int, default=25)
+                        type=str, default='/media/hdd1/fpozoc/databases/Pfam/Pfam-a-33.0')
     parser.add_argument('--outdir', '-o',
                         help='Output directory.', 
                         type=str, default='out/GRCh38/g33')

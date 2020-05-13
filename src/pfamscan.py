@@ -47,16 +47,17 @@ def pfamscan(infile:str, outfile:str, pfamdb:str)-> str:
     return cmd 
 
 
-def run_pfamscan(fasta:str, outdir:str, m='glob'):
+def run_pfamscan(fasta:str, outdir:str, pfamdb:str):
     """Running `pfam_scan.pl` for a common FASTA file and storing it in pfamscan
     directory.
 
     Arguments:
-        fasta {str} -- FASTA file to run pfam_scan.pl
+        fasta {str} -- FASTA file to run pfam_scan.pl.
+        outdir{str} -- Directory to store the results.
         pfamdb {str} -- Pfam database used to run the program.
     """    
     outdir = os.path.join(os.path.dirname(os.path.dirname(fasta)), 'pfamscan')
     os.system(f'mkdir -p {outdir}')
     outfile = os.path.join(outdir, os.path.basename(os.path.splitext(fasta)[0]) + '.pfam')    
-    pfamdb = '/media/hdd1/fpozoc/databases/Pfam/Pfam-a-33.0' # changeable
+    # pfamdb = '/media/hdd1/fpozoc/databases/Pfam/Pfam-a-33.0' # changeable
     os.system(pfamscan(fasta, outfile, pfamdb))
